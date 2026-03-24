@@ -45,7 +45,7 @@ class CoarseGrainedCelluloseComputation():
 
         self.working_directory = working_directory
 
-        self.coarse_grained_cellulose_computation_class = CoarseGrainedCelluloseComputationCommon(task_number,self.working_directory)
+        self.coarse_grained_cellulose_computation_common_class = CoarseGrainedCelluloseComputationCommon(task_number,working_directory)
 
     def in_file_generation(self,interaction_coefficients):
 
@@ -53,11 +53,11 @@ class CoarseGrainedCelluloseComputation():
 
     def physics_computation(self,target_number,queue):
 
-        self.coarse_grained_cellulose_computation_class.physics_computation(target_number,queue)
+        self.coarse_grained_cellulose_computation_common_class.physics_computation(target_number,queue)
 
     def post_processing(self,physics_computation_return):
 
-        post_processing_results_array = self.coarse_grained_cellulose_computation_class.post_processing(physics_computation_return,post_processing_version,post_processing_results_header,default_post_processing_results_array,CoarseGrainedCellulosePostProcessing(self.working_directory))
+        post_processing_results_array = self.coarse_grained_cellulose_computation_common_class.post_processing(physics_computation_return,post_processing_version,post_processing_results_header,default_post_processing_results_array,CoarseGrainedCellulosePostProcessing(self.working_directory))
 
         return post_processing_results_array
 

@@ -1,0 +1,35 @@
+This is the code archive for https://arxiv.org/abs/2506.12893
+
+Briefly, this is to parameterize interaction potentials by Reinforcement Learning via OpenAI Stable-Baselines3.
+
+# 1. How to run the code
+
+0). Install PyTorch, Stable-Baselines3, and LAMMPS;
+1). Clone the code, copy it under a parent folder called "coarse_grained_cellulose_coefficients_code";
+2). Set environmental variable "CLL_CG_HOME" to the parent folder of "coarse_grained_cellulose_coefficients_code";
+3). Copy the "eipifun_env_pool" and configure envs as shown in the "supplementary";
+4). Run initial_training.py and following_training.py as the job scripts shown in the "supplementary".
+
+# 2. What are the versions for eipifun_env_pool and physics_computation_pool
+
+For version vXY, X means mapping and potential configuration and Y means bonded or nonbonded.
+
+For X, 2,3,5, are three different mappings, and 4 is a derivative of 3 trying to address second summit with double well potentials.
+For Y, 1,2 are bonded only, 3,4 are nonbonded only with determined bonded coefficients, 5 are coupled. 2 shares the same physics computation code as 1, while 4,5 share the same physics computation code as 3. Higher version number for Y means simplified envs with narrower range.
+
+The env versions used in the manuscript is v32 (bonded) and v34 (nonbonded).
+
+In the eipifun_env_pool, there is a special "temp_envs" folder; they are simplified envs with less independent variables and narrower range. The four important temp_envs are ended with suffix a,b,c,d.
+The documented the simplified process during the development. a is the narrowest one, d is narrowed based on normal v34.
+
+Because vX1 and vX3 are only preserved for reference, when debugging and running parallel training, fake vX1 and vX3 can be created.
+
+All the trials are preserved for anyone interested in.
+
+# Rough but useful tools
+
+In the "physics_computation_pool/configure", you can copy and create variant versions. The most important one is "turn_off_threshold.sh"; it will generate the "without thresholds" variant for parallel training.
+
+In the "physics_computation_pool/test_only", all the 100 random seeds for 100 replica simulations are documented in "modify_random_seed.sh". You can run the same replica simulation using "replica_test.sh".
+
+

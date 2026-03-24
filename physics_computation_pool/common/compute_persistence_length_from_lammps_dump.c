@@ -232,6 +232,9 @@ int main(int argc, char *argv[]){
     float fitted_k = temp_xy_dot/temp_xx_dot;
     float fitted_persistence_bond_number = -1.0/fitted_k;
     float fitted_persistence_length = -average_bond_length/fitted_k;
+
+    printf("Average bond length: %.6f\nAverage end to end distance: %.6f\n",average_bond_length,fitted_persistence_length);
+
     fprintf(output_persistence_length_file_pointer, "%.6f %.6f\n", average_bond_length, fitted_persistence_length);
 
     fclose(output_persistence_length_file_pointer);
