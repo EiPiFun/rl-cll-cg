@@ -20,15 +20,17 @@ pathlib.Path(trained_agent_directory).mkdir(parents=True,exist_ok=True)
 
 env_name = '{}CoarseGrainedCelluloseCoefficientsEnv-v0'.format(target_version)
 
-print('\33c',end='\r')
-print('Target version: {}'.format(target_version))
-print('Reinforcement algorithm: SAC')
+if __name__ == '__main__':
 
-env = gym.make(env_name)
+    print('\33c',end='\r')
+    print('Target version: {}'.format(target_version))
+    print('Reinforcement algorithm: SAC')
 
-model = SAC('MlpPolicy',env).learn(total_timesteps=32)
+    env = gym.make(env_name)
 
-current_time = time.strftime('%Y-%m-%d-%H:%M:%S')
-model.save(trained_agent_directory+trained_agent_file_name_base+current_time+'.zip')
+    model = SAC('MlpPolicy',env).learn(total_timesteps=32)
 
-env.close()
+    current_time = time.strftime('%Y-%m-%d-%H:%M:%S')
+    model.save(trained_agent_directory+trained_agent_file_name_base+current_time+'.zip')
+
+    env.close()

@@ -6,12 +6,14 @@ target_version = sys.argv[1]
 
 env_name = '{}CoarseGrainedCelluloseCoefficientsEnv-v0'.format(target_version)
 
-print('\33c',end='\r')
-print('Target version: {}'.format(target_version))
-print('Reinforcement algorithm: SAC')
+if __name__ == '__main__':
 
-env = gym.make(env_name)
+    print('\33c',end='\r')
+    print('Target version: {}'.format(target_version))
+    print('Reinforcement algorithm: SAC')
 
-check_env(env)
+    env = gym.make(env_name)
 
-env.close()
+    check_env(env)
+
+    env.close()
