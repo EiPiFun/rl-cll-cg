@@ -19,10 +19,10 @@ For Y, 1,2 are bonded only, 3,4 are nonbonded only with determined bonded coeffi
 
 The env versions used in the manuscript is v32 (bonded) and v34 (nonbonded).
 
+Because vX1 and vX3 are only preserved for reference, when debugging and running parallel training, fake vX1 and vX3 can be created.
+
 In the eipifun_env_pool, there is a special "temp_envs" folder; they are simplified envs with less independent variables and narrower range. The four important temp_envs are ended with suffix a,b,c,d.
 The documented the simplified process during the development. a is the narrowest one, d is narrowed based on normal v34.
-
-Because vX1 and vX3 are only preserved for reference, when debugging and running parallel training, fake vX1 and vX3 can be created.
 
 All the trials are preserved for anyone interested in.
 

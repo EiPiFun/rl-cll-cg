@@ -113,7 +113,7 @@ class CoarseGrainedCelluloseCoefficientsEnv(gym.Env):
         return self.observation, {}
 
     def render(self):
-        print("No graphical output")
+        print('No graphical output')
 
     def close(self):
         current_time = time.strftime('%Y-%m-%d-%H:%M:%S')

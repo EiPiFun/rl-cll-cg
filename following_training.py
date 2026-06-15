@@ -21,29 +21,31 @@ trained_agent_file_name_base = '{}_coarse_grained_cellulose_sac_agent-'.format(t
 
 env_name = '{}CoarseGrainedCelluloseCoefficientsEnv-v0'.format(target_version)
 
-for i in range(1,total_training_loop_number+1):
+if __name__ == '__main__':
 
-    print('\33c',end='\r')
-    print('Target version: {}'.format(target_version))
-    print('Reinforcement algorithm: SAC')
-    print('Loop Count: '+str(i))
+    for i in range(1,total_training_loop_number+1):
 
-    env = gym.make(env_name)
+        print('\33c',end='\r')
+        print('Target version: {}'.format(target_version))
+        print('Reinforcement algorithm: SAC')
+        print('Loop Count: '+str(i))
 
-    temp_file_name_list = sorted(os.listdir(trained_agent_directory))
-    temp_trained_agent_file_name_list = []
+        env = gym.make(env_name)
 
-    for file_name in temp_file_name_list:
-        if file_name.__contains__('_sac_agent-'):
-            temp_trained_agent_file_name_list.append(file_name)
+        temp_file_name_list = sorted(os.listdir(trained_agent_directory))
+        temp_trained_agent_file_name_list = []
 
-    temp_latest_trained_agent_file_name = temp_trained_agent_file_name_list[-1]
+        for file_name in temp_file_name_list:
+            if file_name.__contains__('_sac_agent-'):
+                temp_trained_agent_file_name_list.append(file_name)
 
-    model = SAC('MlpPolicy',env).load(trained_agent_directory+temp_latest_trained_agent_file_name,env)
-    model.learn(total_timesteps=one_training_loop_timestep)
+        temp_latest_trained_agent_file_name = temp_trained_agent_file_name_list[-1]
 
-    current_time = time.strftime('%Y-%m-%d-%H:%M:%S')
+        model = SAC('MlpPolicy',env).load(trained_agent_directory+temp_latest_trained_agent_file_name,env)
+        model.learn(total_timesteps=one_training_loop_timestep)
 
-    model.save(trained_agent_directory+trained_agent_file_name_base+current_time+'.zip')
+        current_time = time.strftime('%Y-%m-%d-%H:%M:%S')
 
-    env.close()
+        model.save(trained_agent_directory+trained_agent_file_name_base+current_time+'.zip')
+
+        env.close()
