@@ -10,6 +10,10 @@ Briefly, this is to parameterize interaction potentials by Reinforcement Learnin
 3). Copy the "eipifun_env_pool" and configure envs as shown in the "supplementary";
 4). Run initial_training.py and following_training.py as the job scripts shown in the "supplementary".
 
+To exactly reproduce the results, use the patched LAMMMPS software at
+https://github.com/EiPiFun/rl-cll-cg-lammps
+as slight deviations are noticed in newer version.
+
 # 2. What are the versions for eipifun_env_pool and physics_computation_pool
 
 For version vXY, X means mapping and potential configuration and Y means bonded or nonbonded.

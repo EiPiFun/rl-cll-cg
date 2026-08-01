@@ -110,7 +110,7 @@ def computation_task_scheduling_bonded(computation_process_list):
         process.start()
         process.join(timeout=coarse_grained_cellulose_computation_timeout)
 
-    last_computation_process.join()
+    last_computation_process.join(timeout=coarse_grained_cellulose_computation_timeout)
 
 def computation_task_scheduling_bonded_and_nonbonded(computation_process_list):
 
