@@ -37,9 +37,12 @@ improper_coeff 3 0.18   9.1 # CL3-CL1-CL1-CL2
 
 timer timeout 0:09:00 every 1000
 
-fix relaxation cl1 spring/self 10.0
+run_style verlet
+
+fix em cl1 spring/self 10.0
+min_style cg
 minimize 1.0e-4 1.0e-6 100 1000
-unfix relaxation
+unfix em
 reset_timestep 0
 
 fix 0 all langevin 300.0 300.0 $(4000.0*dt) 114514

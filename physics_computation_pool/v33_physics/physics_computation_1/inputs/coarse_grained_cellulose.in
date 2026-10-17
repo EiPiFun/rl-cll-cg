@@ -51,9 +51,12 @@ pair_coeff 3 3 lj/smooth 0.8 5.1 8.67 9.18                     # CL3-CL3
 
 timer timeout 0:09:00 every 1000
 
-fix relaxation cl1 spring/self 10.0
+run_style verlet
+
+fix em cl1 spring/self 10.0
+min_style cg
 minimize 1.0e-4 1.0e-6 100 1000
-unfix relaxation
+unfix em
 reset_timestep 0
 
 fix 0 all langevin 300.0 300.0 $(4000.0*dt) 114514
